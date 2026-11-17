@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PubliCa — site
 
-## Getting Started
+Site da PubliCa (marketing de influência), construído sobre a estrutura, o layout e as
+animações de [researchdesignagency.com](https://researchdesignagency.com/), com identidade,
+conteúdo e paleta da PubliCa.
 
-First, run the development server:
+Next.js 16 (App Router) · React 19 · Tailwind v4 · Lenis · TypeScript.
+
+## Rodar
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estrutura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    layout.tsx        fontes, metadata, Header, Footer, smooth scroll
+    page.tsx          ordem das seções
+    globals.css       tokens da marca + CSS do revealer de linhas
+    icon.jpeg         favicon (logo)
+  content/site.ts     TODO o texto do site — editar só aqui
+  components/
+    Hero.tsx          vídeo em tela cheia revelado em persiana (clipPath SVG, 25 faixas)
+    RevealCopy.tsx    "block line revealer": barra sólida varre cada linha medida em runtime
+    StripReveal.tsx   imagem revelada em 22 faixas horizontais, dirigida por scroll
+    SlideButton.tsx   botão de contorno com etiqueta que sobe no hover
+    Services.tsx      linhas com wipe + mix-blend-difference
+    Posts.tsx         lista com wipe alternando preto/roxo
+    Spotlight.tsx     banda "Sala de Criadores"
+    Lab.tsx           carrossel de edições
+    Founder.tsx       bloco da fundadora
+    Footer.tsx        footer roxo em sticky reveal
+    SmoothScroll.tsx  Lenis
+public/
+  brand/              logo e foto enviadas pelo cliente
+  media/              vídeo e fotos de stock
+docs/research/        extração do site de referência (BEHAVIORS.md) e QA
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Paleta
 
-## Learn More
+| Token | Valor | Origem |
+|---|---|---|
+| `ink` | `#000000` | — |
+| `paper` | `#ffffff` | — |
+| `brand` | `#7723FA` | amostrado da logo |
+| `acid` | `#C2F02A` | amostrado da logo |
+| `rule` | `#D4D4D4` | réguas, igual ao referência |
 
-To learn more about Next.js, take a look at the following resources:
+Detalhe que vale conhecer: o roxo da marca sob `mix-blend-difference` com texto branco
+produz exatamente o verde-limão da marca. É o que acontece no hover das linhas de serviço.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Nome da marca
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A agência é **sempre** escrita `PUBLIca.` — PUBLI em grotesca pesada, *ca* em serifada
+itálica, ponto final. Basta escrever a string `PUBLIca.` em `src/content/site.ts`: tanto o
+`RevealCopy` quanto o helper `withBrand()` trocam a string pelo lockup automaticamente.
+O componente é [`Wordmark.tsx`](src/components/Wordmark.tsx).
 
-## Deploy on Vercel
+## Escala tipográfica
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Centralizada em [`src/components/typography.ts`](src/components/typography.ts) —
+`sectionCopy`, `closingCopy`, `sectionTitle`, `sectionLink`. Mudar lá muda o site inteiro.
+Os textos de abertura de seção são curtos de propósito e cada um termina em um CTA.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Antes de publicar
+
+1. **Cases** — hoje são categorias de atuação (Beleza, Food, Moda), não clientes reais.
+   Trocar por cases de verdade quando houver autorização.
+3. **Links sociais** — apontam para as home de Instagram/TikTok/LinkedIn/YouTube.
+4. **E-mail** — `contato@publica.ag` aparece no CTA de contato e na newsletter.
+5. **Newsletter** — sem backend: o envio abre o cliente de e-mail. Ligar à ferramenta
+   de e-mail marketing quando existir.
+6. **Rotas internas** — `/#cases`, `/#blog` etc. são âncoras na home. As páginas
+   internas (blog, cases) ainda não existem.
+
+## Créditos das imagens
+
+Vídeo e fotos de stock do [Pexels](https://www.pexels.com) (licença livre para uso
+comercial, atribuição não exigida). Logo e foto da fundadora fornecidas pelo cliente.

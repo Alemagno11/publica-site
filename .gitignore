@@ -1,13 +1,12 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
-!.yarn/plugins
 !.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
 !.yarn/versions
 
 # testing
@@ -30,7 +29,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
 
 # vercel
@@ -39,3 +38,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ferramentas locais
+/.playwright-mcp/
+/.claude/
+dev.log
+
+# material de origem do cliente e pesquisa (fora do repo público).
+# As cópias usadas pelo site vivem em /public e continuam versionadas.
+/novas imagens e infos/
+/docs/research/
+/*.jpeg
