@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { footer } from "@/content/site";
+import { asset } from "@/lib/asset";
 import Newsletter from "./Newsletter";
 import Wordmark from "./Wordmark";
 
@@ -56,7 +57,7 @@ export default function Footer() {
               />
               <div className="flex flex-col items-start gap-3 sm:items-end">
                 <Image
-                  src="/brand/logo-icon.jpg"
+                  src={asset("/brand/logo-icon.jpg")}
                   alt=""
                   aria-hidden="true"
                   width={160}

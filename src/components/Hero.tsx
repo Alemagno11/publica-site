@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { hero } from "@/content/site";
+import { asset } from "@/lib/asset";
 import Wordmark from "./Wordmark";
 
 const STRIPS = 25;
@@ -49,13 +50,13 @@ export default function Hero() {
         {/* Mobile / tablet — sem recorte */}
         <div className="absolute inset-0 xl:hidden">
           <video
-            src={hero.video}
-            poster={hero.poster}
+            src={asset(hero.video)}
+            poster={asset(hero.poster)}
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 h-full w-full object-cover grayscale"
+            className="absolute inset-0 h-full w-full object-cover brightness-75 grayscale"
           />
         </div>
 
@@ -72,16 +73,24 @@ export default function Hero() {
           </svg>
           <div className="absolute inset-0" style={{ clipPath: "url(#hero-strips)" }}>
             <video
-              src={hero.video}
-              poster={hero.poster}
+              src={asset(hero.video)}
+              poster={asset(hero.poster)}
               autoPlay
               muted
               loop
               playsInline
-              className="absolute inset-0 h-full w-full object-cover grayscale"
+              className="absolute inset-0 h-full w-full object-cover brightness-75 grayscale"
             />
           </div>
         </div>
+
+        {/*
+          O título e o menu usam mix-blend-difference. Sobre as áreas claras do
+          vídeo (o backdrop branco do estúdio) eles perderiam contraste, então
+          escurecemos topo e base — justamente onde esses elementos ficam.
+        */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/70 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
       </div>
 
       <div className="absolute right-0 bottom-0 left-0 z-10 flex flex-col px-6 pb-12 text-paper mix-blend-difference md:px-12 md:pb-16">

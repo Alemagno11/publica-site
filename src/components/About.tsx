@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { about } from "@/content/site";
+import { asset } from "@/lib/asset";
 import RevealCopy from "./RevealCopy";
 import SlideButton from "./SlideButton";
 import { sectionCopy } from "./typography";
@@ -16,8 +17,8 @@ export default function About() {
         <div className="mt-12 flex flex-col items-center gap-8 xl:mt-40 xl:flex-row xl:gap-16">
           <div className="relative w-full max-w-3xl shrink-0">
             <Image
-              src={about.image}
-              alt="Equipe da PubliCa em produção de conteúdo"
+              src={asset(about.image)}
+              alt="Equipe da PUBLIca. em produção de conteúdo"
               width={1800}
               height={1200}
               sizes="(max-width: 1280px) 100vw, 768px"
@@ -25,7 +26,7 @@ export default function About() {
             />
             {/* A logo é um JPEG com fundo preto: em mix-blend-screen o preto some. */}
             <Image
-              src="/brand/logo-icon.jpg"
+              src={asset("/brand/logo-icon.jpg")}
               alt=""
               aria-hidden="true"
               width={400}

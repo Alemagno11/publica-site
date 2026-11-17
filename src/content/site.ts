@@ -117,7 +117,7 @@ export const story = {
 export const contact = {
   headline:
     "A gente gosta de conhecer gente nova, ouvir ideia nova e pegar desafio novo. Se você tem uma marca para colocar na conversa, queremos saber.",
-  cta: { label: "Fale com a PUBLIca.", href: "mailto:contato@publica.ag" },
+  cta: { label: "Fale com a gente", href: "mailto:contato@publica.ag" },
 };
 
 export const footer = {
