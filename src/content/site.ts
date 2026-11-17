@@ -15,8 +15,8 @@
 export const nav = [
   { label: "Sobre", href: "/#sobre" },
   { label: "Serviços", href: "/#servicos" },
-  { label: "Creators", href: "/#creators" },
   { label: "História", href: "/#historia" },
+  { label: "Creators", href: "/#creators" },
 ];
 
 export const navRight = { label: "Contato", href: "/#contato" };
@@ -94,9 +94,11 @@ export const leadForm = {
 };
 
 /**
- * História + números.
- * ATENÇÃO: os valores abaixo são placeholders. A Carol precisa informar os
- * números reais antes de o site ir ao ar para marcas.
+ * História da agência.
+ *
+ * O bloco de números (creators agenciados, marcas atendidas, campanhas, alcance)
+ * saiu em 17/11 porque ainda não temos os valores reais. Para trazer de volta:
+ * recriar `metrics` aqui e o <dl> em Story.tsx — está no commit anterior.
  */
 export const story = {
   label: "Nossa história",
@@ -106,12 +108,6 @@ export const story = {
     "Marca nenhuma controla o que falam dela. O que dá para fazer é escolher bem com quem se conversa e aparecer com alguma coisa que valha o tempo de quem está assistindo. A PUBLIca. nasceu dessa conta simples.",
   body: "Começamos dentro de um estúdio de podcast em Itapevi, conectando marcas da região a criadores que já tinham a audiência certa. Hoje atendemos marcas de dentro e de fora da cidade — e seguimos com o mesmo método: entender o público antes de escolher o creator.",
   image: "/brand/founder.jpg",
-  metrics: [
-    { value: "[ nº ]", label: "Creators agenciados" },
-    { value: "[ nº ]", label: "Marcas atendidas" },
-    { value: "[ nº ]", label: "Campanhas entregues" },
-    { value: "[ nº ]", label: "Alcance somado" },
-  ],
 };
 
 export const contact = {
@@ -133,8 +129,8 @@ export const footer = {
     {
       title: "Contato",
       links: [
-        { label: "Fale com a gente", href: "/#contato" },
         { label: "História", href: "/#historia" },
+        { label: "Fale com a gente", href: "/#contato" },
       ],
     },
     {
