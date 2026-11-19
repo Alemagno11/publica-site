@@ -2,6 +2,7 @@
 
 import {
   createElement,
+  Fragment,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -12,7 +13,8 @@ import {
 
 import Wordmark, { BRAND } from "./Wordmark";
 
-type Token = { text: string; bold: boolean };
+/** `hl` guarda a ordem do destaque, que define a cor (par = lime, ímpar = roxo). */
+type Token = { text: string; bold: boolean; hl: number | null };
 
 /** "PUBLIca." sempre sai no lockup da marca, mesmo no meio de uma frase. */
 function renderWord(word: string) {
@@ -20,18 +22,47 @@ function renderWord(word: string) {
   return <Wordmark />;
 }
 
-/** Divide o texto em tokens, tratando **trechos** como destaque. */
+/**
+ * Divide o texto em tokens:
+ *   **trecho**  → peso maior
+ *   ==trecho==  → caixa de destaque, alternando lime e roxo na ordem de aparição
+ *
+ * ATENÇÃO: a medição de linha é feita palavra a palavra, então um destaque com
+ * várias palavras vira uma caixa por palavra, não uma caixa só. Destaque
+ * palavras isoladas.
+ */
 function tokenize(text: string): Token[] {
   const out: Token[] = [];
   let bold = false;
-  for (const chunk of text.split("**")) {
-    for (const word of chunk.split(/(\s+)/)) {
-      if (!word || /^\s+$/.test(word)) continue;
-      out.push({ text: word, bold });
+  let hlOrder = 0;
+  for (const boldChunk of text.split("**")) {
+    let inHl = false;
+    for (const hlChunk of boldChunk.split("==")) {
+      const hl = inHl ? hlOrder : null;
+      for (const word of hlChunk.split(/(\s+)/)) {
+        if (!word || /^\s+$/.test(word)) continue;
+        out.push({ text: word, bold, hl });
+      }
+      if (inHl) hlOrder += 1;
+      inHl = !inHl;
     }
     bold = !bold;
   }
   return out;
+}
+
+const HL_BOX =
+  "rounded-sm px-2 md:px-3 [box-decoration-break:clone] [-webkit-box-decoration-break:clone]";
+
+/** Classes da palavra: peso e, quando houver, a caixa de destaque. */
+function tokenClass(t: Token): string | undefined {
+  const parts: string[] = [];
+  if (t.bold) parts.push("font-medium");
+  if (t.hl !== null) {
+    parts.push(HL_BOX);
+    parts.push(t.hl % 2 === 0 ? "bg-acid text-ink" : "bg-brand text-paper");
+  }
+  return parts.length ? parts.join(" ") : undefined;
 }
 
 export type RevealCopyProps = {
@@ -81,9 +112,11 @@ export default function RevealCopy({
         currentTop = top;
         grouped.push([]);
       }
+      const hl = el.dataset.hl;
       grouped[grouped.length - 1].push({
         text: (el.textContent ?? "").trim(),
         bold: el.dataset.bold === "1",
+        hl: hl ? Number(hl) - 1 : null,
       });
     });
     setLines(grouped);
@@ -187,9 +220,10 @@ export default function RevealCopy({
             key={i}
             data-word
             data-bold={t.bold ? "1" : "0"}
-            className={t.bold ? "font-medium" : undefined}
+            // Guardado com +1 para que "sem destaque" seja string vazia.
+            data-hl={t.hl === null ? "" : String(t.hl + 1)}
           >
-            {renderWord(t.text)}{" "}
+            <span className={tokenClass(t)}>{renderWord(t.text)}</span>{" "}
           </span>
         ))
       : lines.map((line, i) => (
@@ -200,9 +234,9 @@ export default function RevealCopy({
               style={{ opacity: playedRef.current ? 1 : 0 }}
             >
               {line.map((t, j) => (
-                <span key={j} className={t.bold ? "font-medium" : undefined}>
-                  {renderWord(t.text)}{" "}
-                </span>
+                <Fragment key={j}>
+                  <span className={tokenClass(t)}>{renderWord(t.text)}</span>{" "}
+                </Fragment>
               ))}
             </span>
             <span className="block-revealer" style={barStyle} />

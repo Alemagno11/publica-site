@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { services } from "@/content/site";
 import RevealCopy from "./RevealCopy";
-import { sectionCopy, sectionLink } from "./typography";
+import { sectionCopy, sectionLink, sectionTitle } from "./typography";
+import { withBrand } from "./Wordmark";
 
 /**
- * Linhas de serviço: uma barra sólida varre da esquerda no hover e o título,
- * em mix-blend-difference, inverte de preto para branco.
- * Linhas ímpares usam roxo, pares usam preto — os dois tons da marca.
+ * Linhas de serviço: uma barra sólida varre da esquerda no hover e o conteúdo,
+ * em mix-blend-difference, inverte junto. Linhas pares usam preto, ímpares roxo
+ * — e o branco sobre roxo vira exatamente o lime da marca.
  */
 export default function Services() {
   return (
@@ -22,20 +23,29 @@ export default function Services() {
           </Link>
         </div>
 
+        <h2 className={`mb-6 px-6 md:mb-8 md:px-12 ${sectionTitle}`}>
+          {withBrand(services.title)}
+        </h2>
+
         {services.items.map((item, i) => (
-          <div key={item} className="border-t border-rule last:border-b">
-            <div className="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden px-6 py-7 md:px-12 md:py-9 xl:justify-between">
+          <div key={item.title} className="border-t border-rule last:border-b">
+            <div className="group relative flex w-full cursor-pointer flex-col gap-2 overflow-hidden px-6 py-6 md:px-12 md:py-8 xl:flex-row xl:items-center xl:justify-between xl:gap-10">
               <div
                 className={`absolute inset-0 origin-left scale-x-0 transition-transform duration-500 ease-wipe group-hover:scale-x-100 ${
                   i % 2 === 0 ? "bg-ink" : "bg-brand"
                 }`}
               />
-              <h2 className="relative text-3xl font-medium tracking-tight text-ink transition-all md:text-4xl xl:text-6xl xl:text-paper xl:mix-blend-difference xl:group-hover:translate-x-2.5">
-                {item}
-              </h2>
-              <span className="relative hidden font-mono text-sm text-ink transition-all xl:block xl:text-paper xl:mix-blend-difference xl:group-hover:-translate-x-2.5">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              <h3 className="relative text-3xl font-medium tracking-tight text-ink transition-all md:text-4xl xl:shrink-0 xl:text-6xl xl:text-paper xl:mix-blend-difference xl:group-hover:translate-x-2.5">
+                {item.title}
+              </h3>
+              <div className="relative flex items-baseline gap-6 text-ink xl:ml-auto xl:text-paper xl:mix-blend-difference">
+                <p className="max-w-md text-sm text-neutral-600 transition-all md:text-base xl:text-right xl:text-inherit xl:group-hover:-translate-x-2.5">
+                  {item.description}
+                </p>
+                <span className="hidden shrink-0 font-mono text-sm transition-all xl:block xl:group-hover:-translate-x-2.5">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
             </div>
           </div>
         ))}

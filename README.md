@@ -78,6 +78,25 @@ docs/research/        extração do site de referência (BEHAVIORS.md) e QA
 Detalhe que vale conhecer: o roxo da marca sob `mix-blend-difference` com texto branco
 produz exatamente o verde-limão da marca. É o que acontece no hover das linhas de serviço.
 
+## Copy
+
+Quase todo o texto do site saiu das artes da Carol e foi validado por ela. Ao editar
+`src/content/site.ts`, prefira manter as frases como ela escreveu.
+
+Dois marcadores funcionam em qualquer texto que passe pelo `RevealCopy`:
+
+| Marcador | Efeito |
+|---|---|
+| `**trecho**` | peso maior |
+| `==trecho==` | caixa de destaque, alternando lime e roxo na ordem de aparição |
+
+Duas regras que economizam tempo:
+
+- **Pontuação vai dentro dos marcadores** — `**assim.**`, não `**assim**.`. Fora, o
+  ponto vira uma palavra própria e sai separado por um espaço.
+- **Destaque palavras isoladas.** A medição de linha é palavra a palavra, então um
+  `==destaque de várias palavras==` vira uma caixa por palavra.
+
 ## Nome da marca
 
 A agência é **sempre** escrita `PUBLIca.` — PUBLI em grotesca pesada, *ca* em serifada
@@ -108,7 +127,7 @@ Os textos de abertura de seção são curtos de propósito e cada um termina em 
 7. **Domínio** — hoje em `github.io`. Para `publica.com.br`, apontar o DNS e trocar
    `NEXT_PUBLIC_BASE_PATH` para vazio (domínio próprio serve na raiz).
 
-## Seções removidas em 13/11
+## Seções removidas
 
 Últimos Posts, Sala de Criadores e Estúdio Aberto saíram para encurtar o site.
 O código está no commit `Site PUBLIca. — versao inicial completa`; para recuperar:

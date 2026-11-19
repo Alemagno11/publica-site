@@ -20,8 +20,10 @@ export default function Wordmark({
   dotClassName,
   scriptClassName,
 }: Props) {
+  // `normal-case` protege o "ca" quando o lockup aparece dentro de um título
+  // com `uppercase` — sem isso o itálico sairia como "CA".
   return (
-    <span className={className}>
+    <span className={`normal-case ${className}`}>
       <span className="font-bold tracking-tight">PUBLI</span>
       <span className={`font-display italic ${scriptClassName ?? ""}`}>ca</span>
       <span className={dotClassName}>.</span>

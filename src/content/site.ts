@@ -1,15 +1,19 @@
 /**
  * Todo o conteúdo editorial do site em um lugar só.
- * Textos em pt-BR, escritos a partir de prática corrente de marketing de influência.
  *
  * A marca é sempre escrita "PUBLIca." — essa string vira o lockup
  * (PUBLI grotesca + ca itálica + ponto) automaticamente.
  *
- * Frases oficiais vindas das artes da Carol (13/11/2026):
- *   "Muito além de uma publi."
- *   "Sua marca no creator certo."
- *   "Influência com estratégia."
- *   "Estratégia, influência e conexões que geram resultados."
+ * Em textos que passam pelo RevealCopy:
+ *   **trecho**  → peso maior
+ *   ==trecho==  → caixa de destaque, alternando lime e roxo na ordem de aparição
+ *
+ * Pontuação logo depois de um trecho marcado tem que ficar DENTRO dos
+ * marcadores (`**assim.**`, não `**assim**.`), senão o ponto vira uma palavra
+ * própria e sai separado por um espaço.
+ *
+ * Quase toda a copy abaixo saiu das artes da Carol e foi validada por ela
+ * (13/11 e 18/11/2026). Ao editar, prefira manter as frases como ela escreveu.
  */
 
 export const nav = [
@@ -22,7 +26,7 @@ export const nav = [
 export const navRight = { label: "Contato", href: "/#contato" };
 
 export const hero = {
-  lead: "Agência de Marketing de Influência —",
+  lead: "Marketing de influência para marcas & creators —",
   accent: "muito além de uma publi.",
   video: "/media/hero.mp4",
   poster: "/media/hero-poster.jpg",
@@ -30,7 +34,7 @@ export const hero = {
 
 export const about = {
   headline:
-    "PUBLIca. conecta marcas às vozes que o público já escuta. Estratégia, influência e conexões que geram resultados.",
+    "Conectamos marcas & creators. Campanhas com estratégia, influência e conexões reais.",
   body: "Operamos como extensão do time de marketing: casting escolhido por dado e não por feeling, briefing que respeita a linguagem de cada perfil e mensuração que vai muito além da curtida. Da nano à celebridade, do TikTok ao YouTube, o critério é sempre o mesmo — relevância real para quem está do outro lado da tela.",
   cta: { label: "Conheça a agência", href: "/#servicos" },
   image: "/media/about.jpg",
@@ -38,15 +42,34 @@ export const about = {
 
 export const services = {
   headline:
-    "Influência não se compra, se constrói. Começamos pelo público, não pelo creator. É assim que conteúdo vira conversa, e conversa vira venda.",
+    "Criadores que focam em ==comunidade== e ==relacionamento== geram muito mais impacto do que aqueles que só buscam números.",
+  title: "O que a PUBLIca. faz?",
   cta: { label: "Começar um projeto", href: "/#contato" },
   items: [
-    "Estratégia de Influência",
-    "Casting & Curadoria",
-    "Campanhas & Ativações",
-    "Social Content",
-    "Dados & Performance",
+    {
+      title: "Planejamento estratégico",
+      description: "Estratégias sob medida para sua marca crescer.",
+    },
+    {
+      title: "Conexão com creators",
+      description: "Os influenciadores certos para o seu objetivo.",
+    },
+    {
+      title: "Campanhas com resultado",
+      description: "Da ideia à entrega, com foco em performance.",
+    },
   ],
+};
+
+/** Passo a passo da arte "Como funciona?". */
+export const process = {
+  title: "Como funciona?",
+  steps: [
+    { title: "Entendemos", description: "a sua marca" },
+    { title: "Conectamos", description: "ao creator ideal" },
+    { title: "Criamos campanhas", description: "com resultado" },
+  ],
+  closing: "Estratégia, influência e **execução profissional.**",
 };
 
 /**
@@ -113,7 +136,7 @@ export const story = {
 export const contact = {
   headline:
     "A gente gosta de conhecer gente nova, ouvir ideia nova e pegar desafio novo. Se você tem uma marca para colocar na conversa, queremos saber.",
-  cta: { label: "Fale com a gente", href: "mailto:contato@publica.ag" },
+  cta: { label: "Fale com a PUBLIca.", href: "mailto:contato@publica.ag" },
 };
 
 export const footer = {
@@ -130,6 +153,7 @@ export const footer = {
       title: "Contato",
       links: [
         { label: "História", href: "/#historia" },
+        { label: "Como funciona", href: "/#como-funciona" },
         { label: "Fale com a gente", href: "/#contato" },
       ],
     },

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { withBrand } from "./Wordmark";
 
 type Props = {
   label: string;
@@ -26,14 +27,14 @@ export default function SlideButton({
     <>
       <span className="flex items-center justify-center overflow-hidden">
         <span className="inline-block transition-transform duration-400 ease-wipe group-hover:-translate-y-full">
-          {label}
+          {withBrand(label)}
         </span>
       </span>
       <span
         aria-hidden="true"
         className={`absolute inset-0 flex translate-y-full items-center justify-center transition-transform duration-400 ease-wipe group-hover:translate-y-0 ${fill}`}
       >
-        {label}
+        {withBrand(label)}
       </span>
     </>
   );
