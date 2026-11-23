@@ -2,7 +2,7 @@ import Image from "next/image";
 import { creators } from "@/content/site";
 import { asset } from "@/lib/asset";
 import LeadForm from "./LeadForm";
-import { sectionTitle } from "./typography";
+import { eyebrow, sectionTitle } from "./typography";
 
 /**
  * "Marcas & Creators" — antes chamada Cases. Mostra os segmentos atendidos e
@@ -15,6 +15,7 @@ export default function Creators() {
       className="bg-paper px-6 pt-12 md:px-12 md:py-24 xl:py-32"
     >
       <div className="mb-10 md:mb-14">
+        <span className={eyebrow}>{creators.eyebrow}</span>
         <h2 className={sectionTitle}>{creators.title}</h2>
         <p className="mt-3 text-lg text-neutral-600 md:text-xl">
           {creators.subtitle}
