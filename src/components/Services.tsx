@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { services } from "@/content/site";
 import RevealCopy from "./RevealCopy";
-import { sectionCopy, sectionLink, sectionTitle } from "./typography";
+import { eyebrow, sectionCopy, sectionLink, sectionTitle } from "./typography";
 import { withBrand } from "./Wordmark";
 
 /**
@@ -23,9 +23,13 @@ export default function Services() {
           </Link>
         </div>
 
-        <h2 className={`mb-6 px-6 md:mb-8 md:px-12 ${sectionTitle}`}>
-          {withBrand(services.title)}
-        </h2>
+        <div className="mb-6 px-6 md:mb-8 md:px-12">
+          <span className={eyebrow}>{services.eyebrow}</span>
+          <h2 className={sectionTitle}>{withBrand(services.title)}</h2>
+          <p className="mt-3 text-lg text-neutral-600 md:text-xl">
+            {services.subtitle}
+          </p>
+        </div>
 
         {services.items.map((item, i) => (
           <div key={item.title} className="border-t border-rule last:border-b">

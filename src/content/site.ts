@@ -34,7 +34,7 @@ export const hero = {
 
 export const about = {
   headline:
-    "Conectamos marcas & creators. Campanhas com estratégia, influência e conexões reais.",
+    "Conectamos marcas & creators. Estratégia, influência e conexões que geram **resultados.**",
   body: "Operamos como extensão do time de marketing: casting escolhido por dado e não por feeling, briefing que respeita a linguagem de cada perfil e mensuração que vai muito além da curtida. Da nano à celebridade, do TikTok ao YouTube, o critério é sempre o mesmo — relevância real para quem está do outro lado da tela.",
   cta: { label: "Conheça a agência", href: "/#servicos" },
   image: "/media/about.jpg",
@@ -43,7 +43,9 @@ export const about = {
 export const services = {
   headline:
     "Criadores que focam em ==comunidade== e ==relacionamento== geram muito mais impacto do que aqueles que só buscam números.",
+  eyebrow: "Influência com estratégia.",
   title: "O que a PUBLIca. faz?",
+  subtitle: "Ideias que geram resultados.",
   cta: { label: "Começar um projeto", href: "/#contato" },
   items: [
     {
@@ -78,6 +80,7 @@ export const process = {
  * influenciadores agenciados para substituir.
  */
 export const creators = {
+  eyebrow: "Marketing de influência",
   title: "Sua marca no creator certo.",
   subtitle: "Campanhas com estratégia, influência e propósito.",
   items: [

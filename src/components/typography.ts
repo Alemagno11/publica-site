@@ -18,3 +18,7 @@ export const sectionTitle =
 /** Link de "ver mais" no fim de uma seção. */
 export const sectionLink =
   "text-lg transition-all hover:underline xl:text-xl";
+
+/** Rótulo pequeno acima do título de seção, como nas artes ("MARKETING DE INFLUÊNCIA"). */
+export const eyebrow =
+  "mb-3 block text-xs tracking-[0.3em] text-neutral-500 uppercase md:text-sm";
